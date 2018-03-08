@@ -6,7 +6,7 @@ This repository contains two sets of [Stata](https://www.stata.com/) files...
 * `clayton` a copy of [David Clayton](https://en.wikipedia.org/wiki/David_Clayton) `genassoc` package which used to be available at [http://www-gene.cimr.cam.ac.uk/clayton/software/stata/](http://www-gene.cimr.cam.ac.uk/clayton/software/stata/), but no longer is.  These are a dependency of `genass`.
 
 
-I do not claim any copyright or authority over David Clayton's files they are provided here for convenience  as `genass` uses them and over the years I've been contacted by a few people who wished to use `genass` but could not access David's `genassoc` package.
+I do not claim any copyright or authority over David Clayton's files they are provided here for convenience  as `genass` uses them and over the years I've been contacted by a few people who wished to use `genass` but could no longer access David's `genassoc` package.
 
 ## Installation
 
