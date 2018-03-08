@@ -1,0 +1,19 @@
+^Diet and heart disease^
+
+These data arose from a pilot study of the use of a weighed diet over
+7 days in epidemiological studies. The data in ^diet^ relate subsequent 
+incidence of coronary heart disease (CHD) to dietary energy intake.
+
+^id^          identity number
+^doe^         date of entry
+^dox^         date of exit
+^chd^         outcome: 1= chd, 0 otherwise
+^dob^         date of birth
+^job^         1=driver 2=conductor 3=bank
+^month^       month when weighed dietary survey took place
+^energy^      total energy (kcals/day)
+^height^      height(cms)
+^weight^      weight(kgs)
+^fat^         total fat content of diet in g/day
+^fibre^       total fibre content of diet in g/day
+^hieng^	      1 for energy less than 2500, 2 for energy above 2500

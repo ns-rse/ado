@@ -1,0 +1,66 @@
+Read genotype data dumped in text format from a spreadsheet
+-----------------------------------------------------------
+
+^ginsheet^ ^using^ filename [, ^pre^ped ^ni^d^(^number^)^ ^nl^oc^(^number^)^ ^nc^ov^(^number^)^ 
+  ^id(^names^)^ ^loc^i^(^names^)^ ^cov^ar^(^names^)^ ^zm^iss insheet-options]
+
+
+Description
+-----------
+
+This is a version of the standard command ^insheet^ which handles the naming 
+of variables rather more nicely. There are two general classes of behaviour:
+
+a) Variable names occur on first line of file
+
+Variable names are taken from the input file. When variables occur in groups 
+(eg pairs of alleles) it is commonplace for spreadsheet users to label only 
+the first column of a group. The command ^ginsheet^ detects this, and labels 
+all variables in the group with postfixes _1, _2 etc. Optionally, zero's 
+are recoded to "missing" in all variables except the final ^ncov^ variables.
+The options ^id^, ^loci^ and ^covar^ are not legal in this mode.
+
+b) Variable names do not occur in the file.
+
+Variables are assumed to be in the order: ^id^ variables, genetic ^loci^, 
+and ^covar^iates. Lists of names for these may be supplied using the 
+appropriate options (note that only one name per locus need be supplied). 
+Alternatively one can simply specify the number of ^id^ variables, ^loci^,
+and ^covar^iates. Optionally, zero's are recoded to "missing", except for 
+^covar^iates.
+
+
+Options
+-------
+
+^preped^  Signals that the input file is in preped format
+
+^nid^     Number of identifying variables
+
+^nloc^    Number of genetic loci
+
+^ncov^    The number of covariates following the genetic data 
+
+^id^      Names of identifying variables
+
+^loci^    Names of genetic loci
+
+^covar^   Names of covariates
+
+^zmiss^	  Recode zero in any field to Stata's internal missing value code. If
+        ^ncov^ is set, recoding is not done for the final ^ncov^ variables on
+        the file
+
+Further options for ^insheet^ may also be supplied
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/clayton
+
+ 

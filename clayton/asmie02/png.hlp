@@ -1,0 +1,43 @@
+^Papua New Guinea trial of the effect of a pneumococcal vaccine on morbidity^ 
+^from acute lower respiratory tract infections in schoolchildren^
+
+The file ^pngsubj^ contains fixed information about the children in the study
+while ^pngevent^ contains information on events over time. Each record in
+^pngevent^ refers to a period of follow-up, described by ^timein^ and ^timeout^,
+ending in a disease episode, or in exit from the study. The ^diag^ variable 
+is coded with the diagnosis of the disease or with zero if the record ends 
+with exit from the study. Migration in and out of the study was noted in the
+original study but has been ignored here.
+
+The file ^pngsubj^ contains the variables
+
+^id^           identity number for the subject
+^sex^          1=male 2=female
+^vacc^         vaccination 1=P 2=V   
+^dob^          date of birth
+
+The file ^pngevent^ contains the variables
+
+^id^           identity number for the subject
+^diag^         diagnosis code (0 = censored, >0 = diagnosis code,
+             80,81 = acute lower resp tract inf)
+^timein^       date at start of event record                
+^timeout^      date at end of event record                
+
+The trial was carried out by Deborah Lehmann, Ian Riley and Michael Alpers 
+at the Institute of Medical Research of Papua New Guinea, from 1/10/81
+to 30/11/83. The results are reported in
+
+^Lehmann, D., Marshall, T.F. de C., Riley I.D., Alpers M.P. Effect^ 
+^of pneumococcal vaccine on morbidity from acute lower tract ^
+^infections in Papua New Guinean children. Annals of Tropical ^
+^Paediatrics, 1991, 11, 247-257.^
+
+and 
+
+^Riley, I.D., Lehmann, D., Alpers, M.P., Marshall T.F.de C., Gratten, ^
+^H., Smith D.  Pneumonoccal vaccine prevents death from acute lower ^
+^respiratory tract infections in Papua New Guinean children.  Lancet, ^
+^1986, ii, 877-881.^
+
+

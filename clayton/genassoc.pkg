@@ -1,0 +1,80 @@
+v 2
+
+d Programs for analysis of genetic association studies
+d
+d David Clayton
+d 
+d Diabetes and Inflammation Laboratory         Tel: 44 (0)1223 762669 
+d Cambridge Institute for Medical Research     Fax: 44 (0)1223 762102
+d Wellcome Trust/MRC Building                  david.clayton@cimr.cam.ac.uk
+d Addenbrooke's Hospital, Cambridge, CB2 2XY   www-gene.cimr.cam.ac.uk/clayton/
+d
+d ginsheet.ado, greshape.ado, gloci.ado, grprare.ado, gtab.ado
+d                 Data management and tabulation
+d _ggtype.ado, _ghtype.ado     
+d                 ^egen^ functions to make genotype and haplotype variables
+d labgen.ado      Local function to compute default label namesq
+d tdt.ado, gtrr.ado, pseudocc.ado, pscc.ado, mltdt.ado
+d                 TDT test and various extensions
+d mlpop.ado       Multilocus population-based association test
+d trios.ado, origin.ado 
+d                 Parent-of-origin effects                
+d pwld.ado        Pairwise linkage disequilibrium measures
+d snp2hap.ado     2-locus haplotypes from unrelated subjects
+d rclogit.ado     Cond logistic regression  with Robust & CLuster options
+*
+f genassoc/ginsheet.ado
+f genassoc/ginsheet.hlp
+*
+f genassoc/greshape.ado
+f genassoc/greshape.hlp
+*
+f genassoc/gloci.ado
+f genassoc/gloci.hlp
+*
+f genassoc/gtab.ado	
+f genassoc/gtab.hlp      
+*
+f genassoc/tdt.ado	
+f genassoc/tdt.hlp 
+*
+f genassoc/_ggtype.ado
+f genassoc/gtype.hlp     
+*
+f genassoc/_ghtype.ado
+f genassoc/htype.hlp     
+*
+f genassoc/labgen.ado
+*
+f genassoc/grprare.ado
+f genassoc/grprare.hlp
+*
+f genassoc/gtrr.ado	
+f genassoc/gtrr.hlp       
+*
+f genassoc/trios.ado
+f genassoc/trios.hlp
+*
+f genassoc/origin.ado
+f genassoc/origin.hlp
+*
+f genassoc/pseudocc.ado
+f genassoc/pseudocc.hlp
+*
+f genassoc/pwld.ado
+f genassoc/pwld.hlp
+*
+f genassoc/rclogit.ado
+f genassoc/rclogit.hlp
+*
+f genassoc/pscc.ado
+f genassoc/pscc.hlp
+*
+f genassoc/mltdt.ado
+f genassoc/mltdt.hlp
+*
+f genassoc/mlpop.ado
+f genassoc/mlpop.hlp
+*
+f genassoc/snp2hap.ado
+f genassoc/snp2hap.hlp

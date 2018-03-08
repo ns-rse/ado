@@ -1,0 +1,22 @@
+^1:4 unmatched leprosy and bcg study^
+
+Between 1980 and 1984 a population of approximately 112 000 people living
+in Karonga District, Northern Malawi, were screened for leprosy. Individuals
+found to have leprosy were not followed further. The remaining population was 
+followed until 1989. During the follow-up period 274 new cases of leprosy were 
+identified, and 1096 controls without leprosy at baseline were selected at 
+random from the screened population. Whether an individual was vaccinated 
+with BCG was assessed by the presence or absence of a typical BCG scar 
+when screened. BCG was introduced into Karonga district in mass vaccination 
+campaigns in schools in the late 1970's.
+
+
+^id^          identity number
+^d^           0=control, 1=case
+^age^         age group: 0=5-9, 1=10-14, ... , 4=25-29, 5=30-44, 6=45+
+^sex^         0=male, 1=female
+^bcg^         0=no scar, 1=scar
+^school^      0=none, 1=1-5yr primary, 2=6-8yr primary, 3=secondary/tertiary
+^house^       0=burnt brick, 1=sun-dried bricks or pounded mud, 
+            2=wattle and daub, 3=temporary shelter
+

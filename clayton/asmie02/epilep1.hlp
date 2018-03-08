@@ -1,0 +1,14 @@
+^epilep1^
+
+Total seizures per subject in the epilepsy data.
+
+The variables included are
+
+^id^          Subject id
+^trt^         Treatment, 1=active 0=placebo
+^baseline^    Baseline seizure count
+^age^         Age in years
+^lage^        Log(age)
+^lbase^       Log(baseline/4)
+^d^           Total seizure count
+^y^           Total observation time (weeks)

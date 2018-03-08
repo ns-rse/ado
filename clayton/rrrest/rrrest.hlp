@@ -1,0 +1,126 @@
+{smcl}
+{.-}
+help for {cmd:rrrest} {right:chris.wallace@lshtm.ac.uk}
+{.-}
+
+
+{title:Estimate relative recurrence risk ratio from relative pair data}
+
+{p 8 27}
+{cmd:rrrest}
+({it:aff1}={it:varlist1})
+({it:aff2}={it:varlist2})
+({it:varlist3})
+	[{it:weight}]
+	[{cmd:if} {it:exp}]
+	[{cmd:in} {it:range}]
+	[{cmd:,}
+		{cmdab:r:obust}
+		{cmdab:cl:uster(}{it:varname}{cmd:)}
+		{cmdab:sc:ore}
+		{cmdab:l:evel}
+		{cmdab:cons:traints}
+		{cmdab:diff:icult}
+		{cmd:ci}
+		{cmdab:ns:im(}{it:integer}{cmd:)}
+		]
+
+{cmd:pweight}s, {cmd:aweight}s and {cmd:fweight}s are allowed (see {help weights:weights})
+
+
+{title:Description}
+
+{p}
+{cmd:rrrest} estimates the relative recurrence risk ratio while
+controlling for the effects of non-genetic covariates.  It fits a modified
+Plackett copula to relative pair disease data using {cmd:ml}.  The model fits
+logistic margins for the odds of disease in each member of a relative pair and
+a global odds ratio (theta) for disease in one member conditional on disease
+or no disease in the other.
+{p_end}
+	
+{p} Data are expected to be stored in wide format (see {help reshape:reshape}), with one record for each
+relative pair.  {it:aff1} and {it:aff2} are the disease states of members 1
+and 2 of that pair.  {it:varlist1} and {it:varlist2} are marginal covariates
+for members 1 and 2 respectively (eg age, sex).  These are the environmental
+covariates we wish to control for when estimating the genetic relative
+recurrence risk
+{p_end}
+
+{p} {it:varlist3} is a list of joint covariates for the pair, which may be
+empty.  When different relative pairs are included in the same dataset,
+relationship type, or at least degree of relationship should be included here.
+A different theta will be fitted for each level of {it:varlist3}.
+{p_end}
+
+{p} Six new variables are created to store output: 
+{p_end}
+
+{p 4 8} {it:u1}, {it:u2} are the marginal predicted risk of disease in members
+1 and 2 respectively.
+{p_end}
+{p 4 8} 
+{it:delta} is the predicted risk of both members being
+affected. 
+{p_end}
+{p 4 8} 
+{it:theta} is the global odds ratio. 
+{p_end}
+{p 4 8} 
+{it:lambda1}, {it:lambda2} are the relative recurrence risk ratios for
+members 1 and 2 conditional on disease in members 2 and 1, respectively.  Note
+that lambda is only estimated when the other member has disease.
+{p_end}
+
+
+{title:Options}
+
+{p 0 4}{cmd:robust} and {cmd:cluster(}{it:varname}{cmd:)} specify the robust
+	variance estimator.  It is important to specify {cmd:robust} if 
+	{help weights:weights} are used
+{p_end}
+	
+	
+{p 0 4}{cmd:cons(}{it:numlist}{cmd:)} specifies the linear constraints to be
+   applied during estimation.  Constraints are defined using the constraint
+   command and are numbered; see {help constraint}.  The default is to perform
+   unconstrained estimation.  Note that it is generally sensible to constrain
+   the effect of each marginal covariate to be same on each member of the
+   pairs when dealing with symmetric pairs, such as siblings.
+{p_end}
+
+{p 0 4}{cmd:ci} specifies that 95% confidence intervals for the fitted values
+   {it:lambda1}, {it:lambda2} and {it:delta} should be calculated.  A further
+   six variables are created: {it:lambda1_lci}, {it:lambda1_uci},
+   {it:lambda2_lci}, {it:lambda2_uci}, {it:delta_lci}, {it:delta_uci}
+{p_end}
+
+{p 0 4} {cmdab:ns:im(}{it:integer}{)} is for use with {cmd:ci}.  It specifies
+   the number of simulations to be used per observation when calculating
+   confidence intervals.  The default is 1000.  This should be considered a
+   minimum.
+{p_end}
+
+{p 0 4} {cmdab:sc:ore}, {cmdab:l:evel}, {cmdab:diff:icult} are options for
+{cmd:ml} and are passed through unchaged.  See {help ml:ml}.
+{p_end}
+
+{title:Remarks}
+
+It is recommended that a logistic regression be carried out first on the
+entire dataset (ignoring relationships, in long format) to estimate the effects of the
+marginal covariates.  If the copula model has fit satisfactorily, it would be
+expected that the results from the logistic model would be broadly similar to
+the results from the margins of the copula model.
+
+{title:Also see}
+
+{p 0 21}
+{bind: }Manual:  {hi:[R] ml}
+{p_end}
+{p 0 21}
+On-line:  help for
+    {help ml}
+    {help constraint}
+    {help reshape}
+{p_end}

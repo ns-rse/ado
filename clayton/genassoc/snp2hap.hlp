@@ -1,0 +1,53 @@
+{smcl}
+{.-}
+help for {cmd: snp2hap}
+{.-}
+
+{title: Infer haplotypes of 2-locus SNP markers}
+
+{p 8 27}
+{cmd: snp2hap}
+{it:varlist}
+{cmd:,}
+	{cmdab:gen:erate}{cmd:(}{it:stub}{cmd:)}
+	[{cmdab:ran:dom}|{cmd:all}{cmd:(}{it:newvar}{cmd:)}]
+{p_end}
+
+{p}
+{it:varlist} should identify four variables, the first two coding the first 
+locus and the second two coding the second locus
+{p_end}
+
+
+{title:Description}
+
+{p}
+This program assigns haplotypes for two diallelic loci. Uncertain phase may
+be dealt with in one of three ways:
+
+{p 8 12}
+	{cmd:1.} The most probable phase is assigned (default)
+{p_end}
+{p 8 12}
+	{cmd:2.} The phase is assigned at random, with probability 
+	given by the posterior probability of the assignment
+{p_end}
+{p 8 12}
+	{cmd:3.} Both phases are preserved, together with their posterior 
+	probability 
+{p_end}
+
+
+{title:Options}
+
+{p 0 4}	
+{cmdab:gen:erate} Gives the stub of the variable names for the two haplotypes
+generated. These variables are named {it:stub}{cmd:_1} and {it:stub}{cmd:_2}
+{p_end}
+{p 0 4}	
+{cmdab:ran:dom} Assign phase at random
+{p_end}
+{p 0 4}	
+{cmd:all} Expand the dataset to contain both phases. This option also supplies 
+the name of a variable name to hold the posterior probability of the assignment
+{p_end}

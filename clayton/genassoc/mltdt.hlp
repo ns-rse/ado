@@ -1,0 +1,274 @@
+{smcl}
+{.-}
+help for {cmd:mltdt}
+{.-}
+
+{title:Multiple locus TDT for haplotype tagging SNPs (htSNPs)}
+
+{p 8 27}
+{cmd: mltdt}
+{it:varlist}
+[{cmd:using} {it:file}]
+[{cmd:,}
+	{cmdab:gt:ype}
+	{cmdab:post:fix}{cmd:(}{it: string1 string2}{cmd:)}
+	{cmdab:p:ed}{cmd:(}{it:varname}{cmd:)}
+	{cmdab:p:ed}{cmd:(}{it:varname}{cmd:)}
+	{cmdab:I:d}{cmd:(}{it:varname}{cmd:)}
+	{cmdab:mot:her}{cmd:(}{it:varname}{cmd:)}
+	{cmdab:fa:ther}{cmd:(}{it:varname}{cmd:)}
+	{cmd:sex}{cmd:(}{it:varname}{cmd:)}
+	{cmdab:af:fect}{cmd:(}{it:varname}{cmd:)}
+	{cmdab:ac:ode}{cmd:(}{it:number}{cmd:)}
+	{cmdab:ro:bust}{cmd:(}{it:varname}{cmd:)}
+	{cmdab:cl:uster}{cmd:(}{cmdab:n:uclear}|{cmdab:p:edigree}{cmd:)}
+	{cmdab:noimp:ute}
+	{cmdab:mon:tecarlo}{cmd:(}{it:number}{cmd:)}
+	{cmd:dots}{cmd:(}{it:number}{cmd:)}
+	{cmdab:sav:ing}{cmd:(}{it: file}{cmd:)}
+	{cmdab:rep:lace}
+	{cmdab:app:end}
+	{cmdab:tr:anspose}
+	{cmd:nowarn}
+]
+{p_end}
+
+{p}
+{it:iweights}, {it:fweights}, and {it:pweights} are permitted
+{p_end}
+
+{title:Description}
+
+{p}
+This program carries out multiple locus tests on TDT trios. The 
+dataset is assumed to be arranged in standard {it:preped} format used in  the 
+{it:linkage} package and many other genetics programs. The genotype at 
+each locus can be coded either as a pair of variables, each coded 1 or 2 
+("allele" coding, the default), or as a single variable coded 0, 1, or 2 
+("genotype" coding).  This contrasts with the similar program
+{help haptest:haptest}, in which records refer to haplotypes. 
+{p_end}
+
+{p}
+The dataset indicated in the {cmd:using} clause 
+will contain the output file (written by {help haptag:haptag}) which 
+contains the prediction scores for all other SNPs in the region using 
+a set of htSNPs. The htSNPs must be present in the current data. The
+program will test each  htSNP and, in addition, carry out tests based on 
+predictions of each of the remaining SNPs indicated in the  
+{help haptag:haptag}) output 
+file. These test results may be saved as a {it:Stata} dataset, for example, for
+later use in graphical displays. Global tests for {it:all htSNP loci} and
+for {it:all loci} (including predicted loci) are also computed. 
+
+{p}
+In the absence of a {cmd:using} clause, no predictions can be made. The 
+tests are limited to the SNPs listed in the {it:varlist}.
+If these are "allele" coded, the two variables 
+representing each locus must be adjacent in the {it:varlist}
+
+{p}
+Since the data do not specify haplotype phase, the predictions and tests
+based upon haplotypes which are computed by {help haptest:haptest} cannot be 
+computed by this program. However, the multiple locus test based on all the 
+htSNPs is calculated. 
+
+{p}
+The single locus tests compared the number of "2" alleles transmitted to 
+an affected offspring with the number not transmitted from parents. The test 
+is essentially a one-sample t-test carried out on the differences between
+transmitted and untransmitted counts (see {help ttest:ttest}). 
+The multiple locus test is, in effect,  a Hotelling's t-test carried out on 
+the same 
+difference scores (see {help hotel:hotel}). The difference scores may be 
+weighted allowing, amongst other things, the program to be used for 
+quantitative traits. 
+
+{p}
+Note that the single locus tests do not quite correspond with the simple 
+{help tdt:tdt}, since there is no assumption that transmissions from the
+two parents are independent. However, the tests should agree when variance 
+estimates which relax the independent transmission assumptions are used. 
+
+{p}
+Two Monte Carlo tests may be calculated by randomly changing the sign of the 
+vector of score contributions from each subject (or "cluster"). The p-value
+for the global chi-squared test statistic can be calculated in this way, as
+can the multiple-testing-corrected p-value for the largest of the single degree
+of freedom tests. 
+
+{p} 
+There may be missing data for one or more of the htSNPs. The option
+{cmd:noimpute} turns off imputation of missing values. Multilocus 
+analysis will then be restricted to complete cases. 
+{p_end}
+
+
+{title:Saved results}
+
+{p}
+The following returned values concern single locus tests on typed loci.
+These tests use subjects with  data for the specified locus.
+{p_end}
+
+{p 0 4}
+{cmd:r(p_min_ty)} (scalar) 
+the {it:smallest} of the p-values for typed (htSNP) loci 
+{p_end}
+{p 0 4}
+{cmd:r(locus_p_min_ty)} (macro)
+the SNP which achieved this value
+{p_end}
+
+{p}
+The following returned values concern single locus tests
+on both typed and predicted loci (where appropriate) and to the global test.
+These tests either use imputed values for missing genotypes or, when 
+the {bf:noimpute} option is selected, complete cases
+{p_end}
+    
+{p 0 4}
+{cmd:r(p_min_all)} (scalar) 
+the {it:smallest} of the p-values for both typed loci (and predicted loci,
+if calculated)
+{p_end}
+{p 0 4}
+{cmd:r(locus_p_min_all)} (macro)
+the SNP which achieved this value
+{p_end}
+{p 0 4}
+{cmd:r(chi2)} (scalar)
+the global chi-squared test for all loci
+{p_end}
+{p 0 4}
+{cmd:r(df)} (scalar)
+the degrees of freedom for this test
+{p_end}
+{p 0 4}
+{cmd:r(p_global)} (scalar)
+the p-value for the global test
+{p_end}
+
+{p}
+The following matrices are used in computing the global test and are returned.
+{p_end}
+
+{p 0 4}
+{cmd:r(score)} (matrix)
+the (row) vector of scores
+{p_end}
+{p 0 4}
+{cmd:r(score_variance)} (matrix)
+the variance-covariance matrix of the score vector 
+{p_end}
+
+{p}
+The following matrix is returned if predicted locus tests are calculated. 
+It expands the score vector for typed loci to a predicted score vector for 
+all loci.
+{p_end}
+
+{p 0 4}
+{cmd:r(expand)} (matrix)
+{p_end}
+
+
+{title:Options}
+
+{p 0 4}
+{cmdab:gt:ype} indicates that "genotype" coding is used
+{p_end}
+{p 0 4}
+{cmdab:post:fix}{cmd:(}{it:string1 string2}{cmd:)} gives the two "postfix" 
+strings which
+must be added to the htSNP locus name (as it appears in the {bf:using} dataset)
+to give the two variables used for allele coding of the locus in the master 
+data. Default values are {bf:_1} and {bf:_2}  
+{p_end}
+{p 0 4}	
+{cmdab:p:ed}{cmd:(}{it: varname}{cmd:)} Variable containing the pedigree 
+identifier (default is variable 1)
+{p_end}
+{p 0 4}
+{cmdab:I:d}{cmd:(}{it: varname}{cmd:)} Variable containing the member 
+identifier (default is variable 2)
+{p_end}
+{p 0 4}
+{cmdab:mot:her}{cmd:(}{it: varname}{cmd:)} Variable containing the identifier
+of the member's mother (default is variable 3)
+{p_end}
+{p 0 4}
+{cmdab:fa:ther}{cmd:(}{it: varname}{cmd:)} Variable containing the identifier
+of the member's father (default is variable 4)
+{p_end}
+{p 0 4}
+{cmd:sex}{cmd:(}{it: varname}{cmd:)} Variable containing sex of member (default
+is variable 5)
+{p_end}
+{p 0 4}
+{cmdab:af:fect}{cmd:(}{it: varname}{cmd:)} Variable giving disease status 
+(default is variable 6)
+{p_end}
+{p 0 4}
+{cmdab:ac:ode}{cmd:(}{it: number}{cmd:)} The code indicating disease status
+(default is that 2 represents affected)
+{p_end}
+{p 0 4}
+{cmdab:ro:bust}{cmd:(}{it: varname}{cmd:)} If there are >1  affected offspring
+in any family, this option forces use of a variance estimate "robust" 
+against linkage
+{p_end}
+{p 0 4}
+{cmdab:cl:uster}{cmd:(}{cmdab:n:uclear}|{cmdab:p:edigree}{cmd:)} This 
+chooses whether clusters for robust variance estimates should be 
+nuclear families or larger pedigrees (default is nuclear families)
+{p_end}
+{p 0 4}
+{cmdab:noimp:ute} For multilocus analyses,  by default the number of 
+transmitted and untransmitted copies 
+of an htSNP with missing data are filled in using the Stata command 
+{help impute:impute} (note that imputation disregards transmission status).
+If the option {bf:noimpute} is set, such analyses will be 
+restricted to subjects with complete data at all htSNP loci.
+{p_end}
+{p 0 4}
+{cmdab:mon:tecarlo} This invokes the Monte Carlo testing option and supplies 
+the number of random sign changes that will be generated in order to estimate
+the p-values.
+{p_end}
+{p 0 4}
+{cmd:dots} If this is supplied, a progress report of the Monte Carlo 
+simulation is generated, by writing a period (full-stop) to the screen
+every {it:dots} simulations.
+{p_end}
+{p 0 4}
+{cmdab:sav:ing}{cmd:(}{it:file}{cmd:)} save the output tests as a Stata 
+dataset. This contains the locus name, the t-statistic and associated p-value,
+and an indicator of whether or not the locus is a typed  htSNP or a predicted 
+SNP.
+{p_end}
+{p 0 4}
+{cmdab:rep:lace} indicates that any old version of the {cmd:saving} dataset
+should be overwritten
+{p_end}
+{p 0 4}
+{cmdab:app:end} indicates that, if the {bf:saving} dataset exists, the current 
+results should be appended to it
+{p_end}
+{p 0 4}
+{cmdab:tr:anspose} The default format for the {bf:saving} dataset is to have
+loci as cases and test results as variables. This option reverses this.
+{p_end}
+{p 0 4}
+{cmd:nowarn} Turns of lengthy warning messages, particularly the listing of 
+any misinheritances found
+{p_end}
+
+
+{title:Also see}
+
+{p 0 21}
+Online help for 
+   {help haptag},
+   {help mlpop}
+{p_end}

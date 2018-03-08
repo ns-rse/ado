@@ -1,0 +1,66 @@
+Group rare codes for one or more identically coded variables
+------------------------------------------------------------
+
+^grprare^ varlist [, ^gen^(newvarlist) ^min^(#) ^co^de(#) ^lab^el(string) ^fo^rce]
+
+Description
+-----------
+
+This program calculates frequencies of the values taken by the input variables.
+There may be one or two input variables but, if there are two, they are assumed to be 
+identically coded, the command calculates which of the rarest codes must 
+be grouped together in order to achieve a minimum relative frequency, and 
+recodes the variables (either in place or as new variables). This is useful 
+in genetics for grouping alleles of highly polymorphic markers, for 
+grouping rare haplotypes, and for grouping genotypes. 
+
+
+Options
+-------
+
+^gen^     List of new variables to be generated. This must be the same length 
+          as the input varlist
+
+^min^     The required minimum relative frequency. If greater than 1.0 this 
+          will be assumed to be a percentage, otherwise a proportion
+ 
+^code^     The code for the new grouped category. By default this will be 
+          taken as one greater than the largest code currently used
+
+^label^   If the variables have value labels, this specifies the value label
+	  for the new category. The default is "Others"
+
+^force^   If the ^gen^ option is specified but the program finds nothing to 
+	  do, this option forces creation of the new variables anyway. This
+          is useful for batch work
+
+
+Returned values
+---------------
+
+scalars:
+            r(rf_new)    Relative frequency of new category
+               r(new)    Code for new category
+
+macros:
+             r(group)    List of codes grouped
+
+
+Examples
+--------
+
+. grprare old_1 old_2, gen(new_1 new_2) min(10) force
+
+
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/clayton
+
+

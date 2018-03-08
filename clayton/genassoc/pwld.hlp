@@ -1,0 +1,122 @@
+Pairwise linkage disequilibrium measures
+----------------------------------------
+
+^pwld^ varlist  [weights] [^if^ exp] [^in^ range][, ^ht^ype ^gt^ype ^me^asure^(^string^)^
+    ^min(^number^)^ ^dp(^number^) noml qt^ol^(^#^) it^er^(^#^)^ ^p^attern^(^numlist^) s^ymbols^(^string^)^ 
+    ^gr^aph ^col^ors^(^numlist^)^ ^mat^rix^(^string^) sav^ing^(^filename^) rep^lace ]
+
+^fweight^s and ^aweight^s are allowed 
+
+Description
+-----------
+
+This program calculates various measures of linkage disequilibrium between 
+pairs of diallelic loci. The data may be in three formats:
+
+allele pairs:	Pairs of variables containing alleles at each locus. Alleles
+		coded 1 or 2. This is the default coding
+"gtype":	For each locus, a single variable codes genotype as 0, 1, or 2
+"htype":	In each of the above formats, each line represents one subject.
+		In htype coding, each line represents a haplotype. For each 
+		locus, one variable codes the allele carried as 1 or 2
+
+If data are in either of the first two forms, the method of estimation assumes
+Hardy--Weinberg equilibrium. In this case, the default method of estimation is 
+maximum likelihood but a  method of moments can also be used. This is less 
+accurate but somewhat faster.
+
+For all methods, each pairwise index is estimated using all pairs which have 
+data for both loci.
+
+The measures of LD which may be calculated are:
+
+D	(equivalent to the covariance between alleles)
+Cov	(eqivalent to D)
+D'	(Levwontin's D', a scaled version of D, constrained to lie between 
+	0 and 1 given the allele frequencies)
+Delta	(equivalent tp product-moment correlation coefficient)
+r	(equivalent to Delta)
+delta*	(attributable risk, equivalent to rho)
+rho	(probability of association, equivalent to delta*)
+OR	(odds ratio)
+R2	(R-squared, the square of r, Delta)
+Q	(Yule's Q)
+
+These indices have been reviewed by Devlin and Risch, 1995 (Genomics,
+^29^:311-322,1995). The index rho (delta*) and its role in the Malecot model
+is discussed by Morton et al. (PNAS, 98:5217-5221, 2001). Another index, 
+termed either lambda or delta, has been described by several authors. This
+is asymmetric, relevant when one locus has "disease" and "normal" forms and 
+invariant under case-control sampling on this locus. In my opinion It is not 
+relevant or useful as a measure of LD between markers and is not calculated 
+by this program.
+
+The direction of association is indicated for  all measures except rho 
+(delta*), D', and R2. Positive or negative association is indicated by the 
+sign, except for the odds ratio where direction of association is indicated 
+by values greater than or less than one.
+
+A minimum value may be specified for the minor allele frequency at a locus,
+and LD measures will not be calculated for any locus not achieving this.
+
+The matrix of measures can either be printed out numerically, or shown as a 
+"pattern". This  may either be shown as a character pattern on the standatd
+output,  with a single character representing each pairwise comparison, or as
+a color plot in the graphics screen. Each character, or color,  in the 
+pattern represents a defined range of values for the LD measure. In this form 
+of output the direction of association is ignored and the pattern represents 
+only strength of association.
+
+If desired, the matrix of LD measures can be saved for later processing, or
+written to a file. 
+
+
+
+Options
+-------
+
+^htype^		haplotype coding
+^gtype^ 	genotype coding
+^measure^	LD measure to be calculated (default is "Delta")
+^min^		Minimum minor allele frequency (%) 
+^dp^		Number of decimal places in listing
+^noml^	        Do not use maximum likelihood estimation
+^qtol^		Covergence criterion for ML estimation (change in Yule's
+		`Q' between iterations). Default is 0.001.
+^iter^		Maximum iterations to find each ML estimate (default 10)
+^pattern^	Visualise matrix as a pattern.The option should specify a list 
+		of cut-points to define bands of POSITIVE LD. The list
+		should be in ascending order.
+^symbols^	A string containing, in sequence and without blanks, the
+		characters to represent each band of the LD measure. The 
+		character "blank" is used automatically to denote  LD weaker 
+		than the first number specified by ^pattern^. Default is the 
+		sequence ^.:+*#@^
+^graph^		Show LD matrix as colors in a graphical plot
+^colors^	A list of colors to represent strength of LD. These are 
+		specified as pen numbers (2 thro 9)
+^matrix^	Name of a matrix in which to save the results
+^saving^        File in which to store the results
+^replace^       If an existing file should be overwritten when saving results
+
+
+
+Example
+-------	
+
+^pwld A_1 A_2 B_1 B_2 C_1 C_2, me(Delta) p(0.5 0.75 0.9 0.95) s(-=+#)^
+^pwld A_1-Z_2, me(OR) p(2 5 10 50 100 500)^
+^pwld A-Z, ht me(Q) ml mat(LDmat)^
+
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/clayton
+
+ 

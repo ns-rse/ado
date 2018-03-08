@@ -1,0 +1,79 @@
+Tabulate genotypes of parent-offspring trios
+--------------------------------------------
+
+^trios^ ^varlist^ , [^p^ed^(^varname^)^ ^i^d^(^varname^)^ ^f^ather^(^varname^)^
+	^m^other^(^varname^)^ ^af^fect^(^varname^)^ ^ac^ode^(^varname^) fi^rst
+        ^sav^ing^(^filename^)^ ^rep^lace ^po^rigin ^miss^]
+
+
+Description
+-----------
+
+This function tabulates frequencies of parent-offspring trios by genotype. 
+It is useful for carrying out the analyses suggested by Weinberg (AJHG,
+65:229-235, 1998) for parent-of-origin effects. It is also useful for 
+carrying out the analyses suggested by Gordon et al. (AJHG 69:371-380) for
+the TDT allowing for genotyping errors.
+
+The file of tabulated frequencies can be saved as a Stata dataset or may 
+replace the existing dataset in memory. For each trio it contains
+(a) the genotypes of mother, father, and child (as two alleles and as a 
+    single composite variable)
+(b) the mating type: an integer identifying the pair of parental genotypes 
+    regardless of order
+(c) an indicator of whether the trio complies with Mendelian inheritance rules
+
+
+Options
+-------
+
+^ped^	   variable containing pedigree id (default is 1st variable)
+
+^id^	   variable containing pedigree member id (default is 2nd variable)
+
+^father^   variable containing id of father (default is 3rd variable)
+
+^mother^   variable containing id of mother (default is 4th variable)
+
+^affect^   variable indicating affected or not (default is 6th variable)
+
+^acode^	   the code(s) indicating an "affected" offspring (default is 2)
+
+^first^    use only the first of multiple affected offspring
+
+^saving^   the name of the saved dataset
+
+^replace^  if there is an existing version of the dataset to be overwritten
+
+^porigin^  produce a sorted list of only those trios informative for parent
+           of origin effects
+
+^miss^     produces a list of all trios with genotyped affected offspring,
+           even if parental genotype(s) missing
+
+
+Examples
+--------
+
+. trios  allele1 allele2, saving(trfile) replace
+
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/clayton
+
+
+See Also
+--------
+
+^tdt^, ^gtrr^, ^pseudocc^
+
+
+
+

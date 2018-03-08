@@ -1,0 +1,27 @@
+Logistic regression for missing values
+--------------------------------------
+
+^mvpred^ varlist [^if^ exp] [^in^ range] [,^pr^ed^(^varname^)^ 
+                ^tol(^tolerance^) maxit(^iterations^)^]
+
+
+Description
+-----------
+
+This carries out a logistic regression with an offset which is only present 
+when the outcome response is F. It is useful in calculating inverse 
+probability weights in sensitivity analyses in which NMAR possibilities
+are being explored.
+
+
+^varlist^	The first variable simultaneously holds the response and the 
+		offset. The response is T when the variable is missing (.);
+		otherwise the response is F and the variable holds the offset.
+		Remaining variables are explanatory variables.
+
+^pred^		Specifies a new variable to hold fitted response probabilities
+
+^tol^		Specifies a convergence tolerance (default 0.0001)
+
+^maxit^		Specifies the maximum number of iterations (default 20) 
+

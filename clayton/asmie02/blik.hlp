@@ -1,0 +1,30 @@
+Plotting the Bernouilli likelihood
+--------------------------------
+
+^blik^ D H ^,^[^p^aram^()^ ^c^ut^()^ ^n^ull^()^ ]
+
+Description
+-----------
+
+^blik^ plots the Bernouilli likelihood for the probability parameter,
+the odds paramater, or the logodds parameter, based on ^D^ failures
+and ^H^ survivors.
+
+
+Options
+-------
+^param^ supplies the parameter: ^prob^, ^odds^ or ^logodds^.
+
+^cut^ supplies the cut-point for the likelihood ratio (default ^0.1465^).
+
+^null^ supplies a null value for the parameter. 
+
+Examples
+--------
+
+^blik 4 6, param(prob)^
+^blik 4 6, param(odds)^
+^blik 4 6, param(logodds)^
+^blik 4 6, param(prob) cut(0.2585)^
+^blik 4 6, param(prob) null(0.5)^
+

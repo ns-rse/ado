@@ -1,0 +1,100 @@
+Identity by descent (IBD) regression
+------------------------------------
+
+^ibdreg^ [varlist] [if] [in] [, ^po^sterior^(^varlist^)^ ^pr^ior^(^numlist|varlist^)^
+   ^nocons^tant ^off^set^(^varname^)^  ^r^obust ^cl^uster^(^varname^)^ ^nolog^]
+
+
+
+
+Description
+-----------
+
+Using data comparing genetic and phenotypic similarity betweens pairs of,
+relative this program carries out a logistic regression of the probability 
+that the pair share a gene identically by descent (IBD). Each data record
+describes a related pair of individuals. The prior probabilities that the 
+members of the pair share zero, one or two genes IBD are determined by the 
+relationship between members, and the "posterior" probabilities will have 
+been calculated using a program such as ^genehunter^ or ^merlin^. For most 
+relationships, the pair can only share zero or one genes IBD and the 
+probability of 1-sharing, p say, is modelled by a logistic regression equation.
+For sibpairs, however, the pair may share zero, one or two genes IBD, and the 
+probabilities of these outcomes are assumed to be, respectively, (1-p)^2, 
+2p(1-p), and p^2, where p is again given by a logistic regression equation. 
+This represents an independence assumption for IBD status for maternal and 
+paternal copies and this in turn implies that the effects of the two copies 
+of a disease susceptibility  carried at the locus by a subject are 
+multiplicative upon risk of disease. The dependence of the method on this
+assumption can be relaxed by use of the ^robust^ option.If several relative 
+pairs within the same pedigree may be considered, the ^robust^ option should
+be used together with the ^cluster^ option to indicate that records are 
+clustered by pedigree.  
+
+A known "offset" may be incorporated in the regression model. It will often be 
+appropriate to set the offset to the "prior" log odds of IBD sharing:
+
+                            Pr(1-IBD)
+                        log ---------
+                            Pr(0-IBD)
+
+for each relative pair (for sib pairs zero no offset is required).
+
+
+Options
+-------
+
+^posterior^	Variables holding posterior IBD probabilities in the order
+		zero, one and (possibly) two. If not specified these are
+		assumed to be those used in the last call to ^ibdreg^
+
+^prior^		The prior IBD probabilities. If the relationship between
+		members of pairs is constant, this is simply a list of 
+		values. Otherwise it is a list of variables containing 
+		this information. Default is 0.25, 0.5 and 0.25 --- the 
+		correct value for sibling pairs
+
+^noconstant^	Omit the constant term (intercept) from the regression model
+
+^offset^	Include a known offset in the regression equation
+
+^robust^	Use "robust" Huber-White method to calculate Wald tests and
+		standard errors of regression coefficients
+
+^cluster^	Records are grouped in potentially correlated "clusters", 
+		for example describing multiple pair-waise comparsions 
+		within th esame pedigree
+
+^nolog^		Suppress iteration progress log
+
+
+
+Example
+-------
+
+^ibdreg mean_age, post(post0 post1 post2) pre(0.25 0.5 0.25)^ 
+
+^ibdreg mean_age, robust cluster(pedigree)^
+
+
+Reference
+---------
+
+Holmans, P.(2002) "Detecting Gene-Gene Interactions Using Affected Sib-Pair 
+Analysis with Covariates", Human Heredity, In press.
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/clayton
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+v 2
+
+d David Clayton's Stata Programs
+d
+d rrrest was written by Chris Wallace, LSHTM (Chris.Wallace@lshtm.ac.uk)
+d All other programs written by David Clayton
+
+p genassoc       Programs for analysis of genetic association studies
+p gamenu         Programs for a gui interface to the genassoc package
+p exassoc        Exercises on genetic association studies
+p htSNP          Programs for identifying optimal choice of htSNPs
+p htSNP2         Programs for identifying optimal choice of htSNPs - mark 2
+p ibdreg         Program for IBD regression (linkage analysis with covariates)
+p permutation    Programs for permutation tests 
+p dropout_death  Programs for paper on dropout/death in longitudinal studies
+p asmie02        ASMIE course materials, Erasmus Summer Program, Aug 26-30 2002
+p rrrest	 Chris Wallace's program for recurrence relative risk estimation

@@ -1,0 +1,54 @@
+Tabulation of rates by a categorical exposure variable
+-------------------------------------------
+
+^tabrate^ fail [xvar] [^if^ exp] [^in^ range] [weight]
+        ^, e^xposure^(^varname^)^ [^l^evel^(^#^)^ ^t^rend ^per(^#^)^ ^smr^ ^g^raph]
+
+Description
+-----------
+
+^tabrate^ tabulates the rate, formed from the number of failures divided
+by the person-years, by different levels of a categorical 
+explanatory variable, xvar. Confidence intervals for the rate are also given.
+When xvar is absent the overall rate is reported.
+
+The variable fail contains the number of failures. A warning message is 
+issued if, for individual records, this takes values other than 0 or 1. 
+
+^fweight^s, ^aweight^s, or ^iweight^s are allowed, but tests and confidence
+intervals are only computed for unweighted or frequency weighted analyses.
+
+Options
+-------
+^exposure()^ is not optional. It contains the name of the variable which 
+supplies the denominator of the rate or SMR, namely the person-years or 
+expected numbers.
+
+^per()^ instructs the rate to be given as per whatever person-years. 
+The default is per 1000 person-years.
+
+^trend^ produces a chi-squared test for trend.
+
+^smr^ changes the labelling of the output to be appropriate for SMRs. 
+The variable supplied in ^exposure()^ must contain the expected number of 
+failures in this case.
+
+^level(^#^)^ gives the level for the confidence intervals (default 95).
+
+^graph^ requests a graph of rate against xvar; graph options are allowed.
+
+Examples
+--------
+
+^tabrate d loweng, e(y) ^  -- Individual records
+^tabrate D loweng, e(Y) ^  -- Poisson frequency records
+^tabrate D loweng, e(E) ^  -- Observed and expected
+
+^tabrate d loweng, e(y) trend graph ^
+^tabrate d loweng, e(y) per(10000) ^
+
+
+Also see
+--------
+
+On-line ^help^ for ^mhrate^.

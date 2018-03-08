@@ -1,0 +1,13 @@
+Weights for Leicestershire perinatal study
+==========================================
+
+^stratum^       Sampling stratum (place of delivery)
+^year^          Year
+^births^        Total live births to Leicestershire women
+^cntrls^        Controls drawn in Leicestershire perinatal study
+
+
+See Also
+========
+
+^pnleics^

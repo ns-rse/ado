@@ -1,0 +1,33 @@
+Create a single genotype variable from two allele variables
+-----------------------------------------------------------
+
+
+^egen^ newvar = ^gtype(^varname^ ^varname^)^ [, ^maxl^en(#) ^po^ ^lab^el^(^string^)^]
+
+Description
+-----------
+
+Takes two variables holding the alleles at a single locus and creates a 
+single variable holding the genotype coding. If the ^po^ option is set, 
+parental origin of alleles is assumed to be known, and genotypes will be 
+denoted, for example, 1|2 or 2|1. Otherwise both of these would be coded 
+as 1/2. The ^maxlen^ option sets the maximum value label length for the 
+genotype variable. The ^label^ option allows specification of the name of 
+the value label defined for the new variable. Otherwise a name is made up.
+
+
+Example
+-------
+
+. egen  gt = gtype(allele1 allele2)
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/clayton
+

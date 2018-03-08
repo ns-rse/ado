@@ -1,0 +1,41 @@
+{smcl}
+{.-}
+help for {cmd:gmissing}
+{.-}
+
+{title: Missing data patterns for genetic data}
+
+{p 8 27}
+{cmd: gmissing}
+[{it:varlist}]
+[{cmd:if} {it:exp}]
+[{cmd:in} {it:range}]
+[{cmd:,}
+	{cmdab:post:fix}{cmd:(}{it: string1 string2}{cmd:)}
+]
+{p_end}
+
+{title:Description}
+
+{p}
+This program displays missing data patterns for genetic data 
+The genotype at each locus is assumed to can be coded as a pair of 
+variables, whose names have a common stub followed by different 
+postfixes. For example, an SNP named {it:snp1} might be coded in the variables 
+{cmd:snp1_1} and {cmd:snp1_2}.
+
+{p}
+The program displays the proportion of missing values at each locus, the 
+proportion of records with missing genotypes at any locus, and the frequency 
+of each missing data pattern. By default, the program considers all loci 
+but a restricted set may be specified by including a {it:varlist}.
+
+{title:Options}
+
+{p 0 4}
+{cmdab:post:fix}{cmd:(}{it:string1 string2}{cmd:)} gives the two postfix 
+strings which must be added to the locus name stub
+to give the two variables used for allele coding of the locus. 
+Default values are {bf:_1} and {bf:_2}  
+{p_end}
+

@@ -1,0 +1,66 @@
+Leicestershire Perinatal Stady
+==============================
+
+This is a geographically based case control study into perinatal
+mortality. For each perinatal death, a single live birth control was
+enrolled. The need to rapidly sample controls so that interviews for
+both case and control could be conducted under similar circumstances led
+the investigators to take as control the next live birth at that
+hospital. Thus controls are matched to cases with respect to both time
+and place of delivery. However, the conventional matched case control
+analysis, which estimates effects of risk factors within hospitals, is
+not usually appropriate. In particular analyses which focus on
+differences between perinatal mortality in different hospitals or for
+different years are seriously compromised by the method of selecting
+controls. 
+
+Fortunately  routine data systems record total births by hospital and by
+year. This routine data can be thought of as the first stage of a
+2-stage study in which the case control study is the second stage. 
+The sampling fractions for the  second stage study can be obtained from
+the data file ^pnbirths.dta^. In these files, sampling strata are grouped quite
+coarsely by hospital (4 groups) and time (1-year intervals) although
+finer division would have been possible.
+
+Perinatal deaths are subdivided into 4 types: 
+1. Congenital malformations inconsistent with life
+2. Asphyxia in labour
+3. Macerated still births
+4. Immaturity
+
+These data files refer to single births only. Because these were much
+more frequent in controls than cases, the numbers of cases and controls
+is not equal, although they are in the total dataset.
+
+^id^		Subject identifier	
+^case^		0: Control,  1-4: Case type
+^d^		0: Control,  1: Case (any type)
+^year^	 	Year	
+^deliv^		Intended place of delivery at onset of labour. 1 and 2
+		are the main teaching hospitals in the area	
+^stratum^ 	Hospital stratum for sampling. Two categories correspond
+		to the teaching hospitals, but the other two categories
+		do not quite correspond with the coding in ^deliv^. 
+^book^		Place of initial booking	
+^hdiab^		History of diabetes	
+^gdiab^		Gestational diabetes during this pregnancy
+^infert^	History of infertility	
+^uti^		Urinary tract infection this pregnancy	
+^pet^		Pre-eclamptic toxaemia this pregnancy	
+^aph^		Antepartum haemorrhage this pregnancy	
+^smoke^		Smoked during pregnancy	
+^gpqual^	GP has obstetric qualification/recognition	
+^asian^		Asian (Indian subcontinent) ethnicity	
+^height^	0: <152 cm, 1: 152-157 cm, 2: 158+ cm	
+^age^		0: 18-34 yrs, 1: <18 yrs, 2: 35+yrs	
+^parity^	0: parity 1 or 2, 1: primiparous, 2: parity 3+	
+^anc^		Antenatal care, 0: pre-18 wks, 1: after, 2: never	
+^sclass^	Social class, 0: I-III(NM), 1: IIIM or IV, 2: V	
+^work^		0:unemployed, 1: non-manual, 2: manual	
+^ipc^		7+ days of inpatient care during this pregnancy	
+^bwt^		Birthweight, gm	 
+
+See Also
+========
+
+^pnbirths^

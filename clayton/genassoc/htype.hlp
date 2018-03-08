@@ -1,0 +1,43 @@
+Create a haplotype variable from allele variables
+-------------------------------------------------
+
+^egen^ newvar = ^htype(^varname^ ^varname^)^ [, ^co^deas(varname) ^maxl^en(#) ^num^ ^miss^]
+
+Description
+-----------
+
+Takes variables holding the maternal or paternal allele at a series of loci
+and creates a single variable holding the haplotype coding. Haplotype
+labels contain the allele codes separated by the "." character.
+
+Options
+-------
+
+^codeas^    Forces coding of haplotype to be the same as that used for an
+            existing haplotype variable.
+
+^maxlen^    Maximum label length (default 80). 
+
+^num^       Force numeric allele coding. When the allele variables are given 
+            value labels, the haplotype names may become very long; this 
+            option forces numeric coding.
+
+^miss^      Treat missing values as just another allele (labelled "?"). Otherwise
+            the haplotype is set to missing if any locus is missing.
+
+Example
+-------
+
+. egen  mat = htype(a_1 b_1 c_1)
+. egen  pat = htype(a_2 b_2 c_2), codeas(mat)
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/clayton
+

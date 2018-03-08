@@ -1,0 +1,107 @@
+Analysis of parental origin effects in TDT trios
+------------------------------------------------
+
+^origin^ ^varlist^ , [^p^ed^(^varname^)^ ^i^d^(^varname^)^ ^f^ather^(^varname^)^
+	^m^other^(^varname^)^ ^af^fect^(^varname^)^ ^ac^ode^(^varname^)^ no^fi^rst
+        ^mat^ ^gt^ype ^rob^ust ^cl^uster(^n^uclear|^p^edigree) ^est^ ^ref^(string)]
+
+
+Description
+-----------
+
+This function tests for parental origin effects in TDT studies by 
+a generalization of the method proposed by Weinberg (AJHG, 65:229-235, 1998). 
+Multi-allelic markers are allowed, as are families with more than one 
+affected offspring.
+
+The method is based on a model for offspring risk in which the effect of 
+offspring genotype differs according to the parental origins of the two 
+alleles. There may be a further effect of maternal genotype on offspring risk 
+and this is assumed to act multiplicatively with the  effect of offspring 
+genotype.
+
+The statistical argument considers all affected child/parent trios 
+in which the genotypes of parents differ. The likelihood conditions on
+(a) the model, (b) the offspring genotype, and (c) the two parental genotypes,
+and considers the probability that the two parents are as observed or reversed
+(with father taking the mother's genotype and vice-versa). The model is fitted
+using the glm command in Stata. "Robust" and "cluster" options are availbale
+to deal with the case of families with more than one affected offspring.
+
+If there are k alleles and parental origin of alleles is known, there are 
+k*(k-1) heterozygous genotypes. Thus, the test that the risk for genotype i|j 
+(where i is the maternal allele and j is the paternal allele) is the same as 
+that for j|i has k*(k-1)/2 df. However, a more parsimonious model is to assume
+"allelic" parental origin effects, in which
+
+Risk for genotype i|j      Effect of maternal i 
+---------------------  =   --------------------
+Risk for genotype j|i      Effect of maternal j
+
+One of the maternal alleles is taken as reference and its effect set to 1.0 so
+that the resulting test for parental origin has k-1 df. This test is default.
+
+Effects are estimated in glm as additive effects on the log scale.
+
+Note that this method of analysis is only valid for triads ascertained via a 
+single affected offspring. It uses the distortion in parental genotype 
+distributions which would be created under such ascertainment in the presence 
+of parent-of-origin effects. 
+
+
+Options
+-------
+
+^ped^	   variable containing pedigree id (default is 1st variable)
+
+^id^	   variable containing pedigree member id (default is 2nd variable)
+
+^father^   variable containing id of father (default is 3rd variable)
+
+^mother^   variable containing id of mother (default is 4th variable)
+
+^affect^   variable indicating affected or not (default is 6th variable)
+
+^acode^	   the code(s) indicating an "affected" offspring (default is 2)
+
+^nofirst^  use all of multiple affected offspring. But see above!
+
+^mat^	   allow for direct (multiplicative) effects of the maternal genotype
+     	   on risk in the offspring
+
+^gtype^	   allow 1 df for each heterozygous genotype. Otherwise assume allelic
+	   effects of parental origin, giving a k-1 df test for a k-allele 
+           locus
+
+^robust^   use robust variance estimates (when more than one trio per family)
+
+^cluster^  defines trios as clustered within nuclear families (default) or 
+           within pedigrees
+
+^est^      print parameter estimates in addition to tests
+
+^ref^	   when k-1 df analysis is used, selects the "reference" allele 
+           (default is the most frequent allele)
+           
+
+Examples
+--------
+
+. origin  allele1 allele2, mat gt robust cluster(nuclear) est
+
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/todd/
+
+
+See Also
+--------
+
+^tdt^, ^gtrr^, ^trios^, ^glm^

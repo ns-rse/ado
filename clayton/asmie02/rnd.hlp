@@ -1,0 +1,78 @@
+.-
+help for random number generators			        STB-28: sg44
+.-
+
+Random number generators
+------------------------
+
+         Student's t:   ^rndt^ obs df
+
+          Chi-square:   ^rndchi^ obs df
+    
+                   F:   ^rndf^ obs df_n df_d
+    
+          log normal:   ^rndlgn^ obs mean var
+
+             Poisson:   ^rndpoi^ obs mean
+                        ^rndpoix^ [ mu ]
+            
+            binomial:   ^rndbin^ obs prob numb
+                        ^rndbinx^ [ prob ] den
+    
+               Gamma:   ^rndgam^ obs shape scale
+                        ^rndgamx^ [mu], s(#)
+    
+    inverse Gaussian:   ^rndivg^ obs mean sigma
+                        ^rndivgx^ [mu], s(#)
+            
+         exponential:   ^rndexp^ obs shape
+
+             Weibull:   ^rndwei^ obs shape scale
+
+       Beta binomial:   ^rndbb^ obs denom prob k
+
+
+Description
+-----------
+
+The programs listed above generate random numbers for a variety of important
+distributions.  In the syntax diagrams, ^obs^ indicates the number of 
+observations to be generated.  The other parameters are self-explanatory.
+Commands whose names end in ^x^ provide the capability to model a complete
+synthetic data set.
+
+
+Examples
+--------
+
+ . ^rndbin 20000 .5 1^
+
+ . ^set obs 50000^
+ . ^generate x1 = abs(invnorm(uniform())^
+ . ^generate x2 = abs(invnorm(uniform())^
+ . ^generate lp = 1 + .5*x1 - .25*x2^
+ . ^generate mu = exp(lp)^
+ . ^rndpoix mu^
+
+
+Authors
+-------
+
+        Joseph Hilbe
+        Department of Sociology
+        Arizona State University 
+        Tempe, AZ 85287
+        atjmh@@asuvm.inre.asu.edu
+   
+        Walter Linde-Zwirble
+        Health Outcomes Techniologies, 
+        350 S. Main St, #109
+        Doylestown, PA 19901
+        walterl22@@aol.com
+   
+
+
+Also see
+--------
+
+    STB:  STB-28 sg44

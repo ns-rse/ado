@@ -1,0 +1,41 @@
+Make a list of loci
+-------------------
+
+^gloci^ [varlist], [^post^fix^(^string1 string2^) lblb^def^(^lblname^)^ ]
+
+
+Description
+-----------
+
+This command is useful in other programs and in do-files. It computes a list
+of known locus names, assuming that each locus is coded as two variables  
+with names given by the locus name with each of the two postfix 
+strings appended to it. Optionally a list of value labels is also computed.
+For L loci, this list associates the values 1...L with the locus names.
+
+Returned values
+---------------
+
+^gloci^ is an ^rclass^ command and returns the locus names in the macro r(loci)
+
+
+Options
+-------
+
+postfix		Defines the two postfix strings. Defaults are _1 and _2
+
+lbldef		Defines the name of a list of value labels
+
+
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/clayton
+
+

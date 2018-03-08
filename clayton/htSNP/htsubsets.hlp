@@ -1,0 +1,73 @@
+Search for optimal set of htSNPs
+--------------------------------
+
+^htsubsets^ [varlist] [, ^mi^n^(^#^)^ ^ma^x^(^#^) d^ots^(^#^) s^aving^(^filename^) r^eplace ^ch^ap]
+
+
+^aweight^s, ^fweight^s, ^iweight^s, and ^pweight^s are allowed  
+
+ 
+Description
+-----------
+
+This program searchs a set of diallelic loci (the argument ^varlist^) to find
+optimal subsets for "explaing" haplotype diversity. It executes a search of
+all possible subsets of size up to a given maximum, calling the program 
+^hapdiv^ for each subset to calculate the percentage of diversity explained. 
+Optimality can be judged on the basis of (a) percentage of diversity explained
+(PDE) or residual mean diversity (RMD), and (b) total haplotype diversity over
+loci (Total) or the worst of the locus-specific diversities (Worst). There are,
+therefore, four possible "best" choices. A complete record of all subsets 
+searched, together with their values on all four criteria may be saved as a
+Stata dataset.
+
+The search may be restricted to those subsets of each size, k say, which 
+linearly identify the k+1 most common haplotypes. 
+
+Options
+-------
+
+^min^       The minimum subset size to search (default 1)
+^max^       The maximum subset size (default 5)
+^dots^      Print a dot every # subsets searched (default 10)
+^saving^    Filename in which to save record of subset search
+^replace^   Necessary if the ^saving^ file is to be overwritten
+^chap^      Restrict search to subsets which identify most common haplotypes.
+
+Returned values
+---------------
+
+^htsubsets^ is an ^rclass^ command and returns the following values:
+
+scalars:
+             r(r_worst) =  Best RMD (Worst locus) achieved  
+             r(r_total) =  Best RMD (Total) achieved
+             r(p_worst) =  Best PDE (Worst locus) achieved  
+             r(p_total) =  Best PDE (Total) achieved
+
+macros:
+         r(rw_subset) : Best subset on RMD (Worst) criterion
+         r(rt_subset) : Best subset on RMD (Total) criterion
+         r(pw_subset) : Best subset on PDE (Worst) criterion
+         r(pt_subset) : Best subset on PDE (Total) criterion
+           r(worst_r) : Worst locus in RMD (Worst) subset
+           r(worst_p) : Worst locus in PDE (Worst) subset
+
+
+See Also
+--------
+
+^hapdiv^, ^haplist^
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/clayton
+
+
+

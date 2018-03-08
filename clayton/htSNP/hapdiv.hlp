@@ -1,0 +1,76 @@
+Explanation of haplotype diversity by a smaller set of htSNPs
+-------------------------------------------------------------
+
+^hapdiv^ [varlist] [weight], ^ht^snps(^varlist^) 
+
+
+^aweight^s, ^fweight^s, ^iweight^s, and ^pweight^s are allowed  
+
+
+Description
+-----------
+
+This program calculates how much of the haplotype diversity for a full list
+of loci (contained in the argument ^varlist^) is explained by a subset of
+loci (the ^htsnps^ list). Diversity between N haplotypes is defined as the 
+total number of discrepancies in all N^2 pairwise comparisons. The program 
+calculates total diversity, "residual" diversity (the diversity between 
+haplotypes within groups defined by the htSNPs) abd the proportion of 
+diversity "explained" by the htSNPs:
+
+                         Residual diversity
+	P  =	1   -   --------------------
+                          Total diversity
+
+Since we would expect to achieve some explanation of diversity even if the 
+loci were in linkage equilibrium, a chance-corrected version of the above 
+index, similar in concept to Cohen's kappa, is also displayed. If P' is the 
+value of P expected by chance, the corrected index is (P-P')/(1-P').
+
+These indices are calculated for the overall haplotype and for each locus 
+separately.
+
+Loci are assumed to be diallelic with alleles coded 1 or 2. Only completely 
+typed haplotypes are used in the calculations.
+
+Data which consist of a single record for each haplotype together with its 
+frequency or probability can be analysed using weights.
+
+Options
+-------
+
+^htsnps^    (not optional) The loci comprising the candidate set of htSNPs
+
+Returned values
+---------------
+
+^hapdiv^ is an ^rclass^ command and returns the following values:
+
+scalars:
+           r(rmd_max) =  Residual mean locus-specific diversity (worst locus)
+           r(rmd_tot) =  Residual mean total diversity 
+          r(p_chance) =  Expected chance proportion of diversity explained
+             r(p_min) =  Proportion of worst locus-specific diversity explained
+             r(p_tot) =  Proportion of total diversity explained
+
+macros:
+         r(rmd_worst) : Worst locus for residual mean diversity 
+           r(p_worst) : Worst locus for proportion of diversity explained
+
+
+
+See Also
+--------
+
+^htsubsets^
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/clayton
+

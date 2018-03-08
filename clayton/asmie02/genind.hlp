@@ -1,0 +1,43 @@
+{smcl}
+{.-}
+help for {cmd: genind}
+{.-}
+
+{title:Generating indicators for nested effects}
+
+{p 8 27}
+{cmdab:genind:}
+[{cmd:if} {it:exp}]
+[{cmd:in} {it:range}]
+[{cmd:,}
+    {cmdab:exp(:}{it:varname}{cmd:)}
+    {cmdab:mod(:}{it:varname}{cmd:)}
+    {cmdab:base:(}{it:#}{cmd:)}
+]
+
+
+{title:Description}
+
+If A is an exposure variable and B is a stratifying variable, then
+nested effects are the effects of A within each level of B. The
+command produces indicator variables IA_* and JA_*B_* which should be
+included in any estimation command. For example, if A has 3 levels,
+B has 4 levels, and the baseline for A is the first level, then the
+command produces indicators
+
+{cmd: IA2 IA3 JA2_B1 JA3_B1 JA2_B2 JA3_B2 JA2_B3 JA3_B3 JA2_B4 JA3_B4}
+
+When I* and J* are included in an estimation command, the terms J*
+refer to the nested effects of A within levels of B.
+
+{title:Options}
+
+{cmd:exp}	   exposure variable, must be specified
+{cmd:mod}	   modifying variable, must be specified
+{cmd:base}	   base-line for exposure effects, default 1
+
+{title:Also see}
+
+Online help for: {help tabmenu1}, {help tabmenu2}, {help effmenu1}, {help effmenu2}.
+
+

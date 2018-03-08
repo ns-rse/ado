@@ -1,0 +1,129 @@
+Transmission testing at the genotype level
+------------------------------------------
+
+^gtrr^ ^varlist^  [,^p^ed^(^varname^)^ ^i^d^(^varname^)^ ^f^ather^(^varname^)^
+	^m^other^(^varname^)^ ^sex(^varname^)^ ^af^fect^(^varname^)^ 
+        ^ac^ode^(^numlist^)^ ^po^ ^sav^ing^(^filename^)^ ^rep^lace ^ref(^string^)^ 
+        ^e^min^(^number^)^ ^nowarn^ ^rob^ust ^cl^uster(^p^edigree|^n^uclear) no^an^al no^tab^le] 
+ 
+The command requires two arguments - the variables containing the two alleles
+at the locus considered.
+
+Description
+-----------
+
+This function performs a TDT at the genotype level for a specified (single) 
+locus. The program carries out an analysis of the matched case-control 
+study constructed by comparing each "case" (an affected offspring) with 
+a set of three "pseudo-controls" comprising the other three possible 
+genotypes for the offspring of these parents. A conditional logistic
+regression is carried out in order to estimate relative risks of each 
+genotype to a "reference" genotype. Optionally,  parental origin of alleles 
+should be preserved in the offspring genotype. If origin is preserved, the 
+test has more df (since there are more genotypes) and some families will be 
+lost. The case-control data set may be saved for further analysis. 
+
+Note that alleles coded as zero are NOT treated as missing. 
+Neither are zero pedigree member codes. If you want zero to be treated as
+missing, use ^mvdecode^ to recode them. This problem does not occur if you 
+read in "preped" formatted files with the utility ^inprep^.
+
+
+Options
+-------
+
+^ped^	  variable containing pedigree id (default is 1st variable)
+
+^id^	  variable containing pedigree member id (default is 2nd variable)
+
+^father^  variable containing id of father (default is 3rd variable)
+
+^mother^  variable containing id of mother (default is 4th variable)
+
+^sex^     variable containing sex of subject (default is 5th variable)
+
+^affect^  variable indicating affected or not (default is 6th variable)
+
+^acode^	  the code(s) indicating an affected individual (default is 2)
+
+^po^	  specifies that parental origin of alleles is to be preserved
+
+^saving^  a filename for saving the generated case-control dataset
+
+^replace^ necessary if an existing file is to be overwritten
+
+^ref^	  the genotype to be taken as reference for relative risks. The 
+	  genotype is specified by the two allele numbers separated by the 
+	  character | (vertical bar) or / with no embedded spaces. The 
+          character | is used when parental origin is preserved and / is 
+	  used when it is not. In th elatter case the allele with the smallest
+	  numerical code comes first. If this option is not specified, the 
+          most frequent genotype will be used as reference
+
+^emin^	  the minimum number of expected transmissions for which a genotype 
+	  will be considered independently. Genotypes rarer than this are 
+	  aggregated with the next least common genotype until this condition 
+	  is met (default is 5)	
+
+^robust^  Specifies that "robust" (information-sandwich) variance estimates 
+	  are to be used for the conditional logistic regression. This option 
+	  should be used if multiple offspring are to be included in the 
+	  analysis, but requires a reasonably large number of distinct 
+	  "clusters" for validity
+
+^cluster^ Specifies independent "clusters" for robust variance estimates.
+	  Either pedigrees or nuclear families may be taken as clusters 
+	  (default is nuclear families) 
+
+^nowarn^  Turns off diagnostic output concerning misinheritance
+
+^noanal^  Disables the analysis (for use when creating case-control data set
+	  for later analysis)
+
+^notable^ Suppresses the frequency table of genotype by case/pseudo-control
+
+Output case-control dataset
+---------------------------
+
+The first four variables reproduce the identification information for the 
+affected offspring around whom the case-control set is built (pedigree, member,
+father, and mother identifiers). the next four variables (mother_1, mother_2,
+father_1, and father_2) contain the genotype data for the parents. the 
+next two variables contain the genotype of the affected case or pseudo-control.
+If maternal and paternal alleles are distinguished, these are called child_m 
+and child_p; otherwise they are child_1 and child_2 (this genotype is also 
+stored as a single variable -- gt_child). The next variable (case) is a 0/1 
+indicator distinguishing cases from pseudo-controls. The final variable (set) 
+labels sets of a case and its three pseudo-controls.
+
+Returned values
+---------------
+
+^gtrr^ is an ^rclass^ command and returns the following values:
+
+r(chi2)     (scalar) Global chi-squared test statistic
+r(df)       (scalar) Degrees of freedom
+r(p_val)    (scalar) p-value
+r(chi2type) (macro)  "Wald" or "LR" depending on whether ^robust^ is used or not
+
+Examples
+--------
+
+. gtrr allele1 allele2, po saving(casecon) replace ref(1|2)
+
+See Also
+--------
+
+^tdt^, ^pseudocc^, ^inprep^
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/clayton
+
+

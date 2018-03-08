@@ -1,0 +1,117 @@
+The TDT test
+------------
+
+^tdt^ varlist [weight] [,^p^ed^(^varname^)^ ^i^d^(^varname^)^ ^f^ather^(^varname^)^
+        ^m^other^(^varname^)^ ^sex(^varname^)^ ^af^fect^(^varname^)^ 
+        ^ac^ode^(^numlist^)^ ^e^min^(^varname^)^ ^pac^ode(numlist) ^mo^rigin ^po^rigin 
+        ^ma^le ^fe^male ^rob^ust ^cl^uster(^n^uclear|^p^edigree|^t^riad) ^nowarn^]
+
+The command requires two arguments - the variables containing the two alleles
+at the locus considered. ^iweights^ are allowed
+
+Description
+-----------
+
+This function performs a TDT for a specified (single) locus. The program 
+determines which transmissions are informative and counts observed an expected 
+transmissions of each allele in these. A chi-squared test on 1 df is 
+calculated for each allele and a global chi-squared (on multiple df) is also 
+calculated.  
+
+In the presence of linkage, transmissions to more than one affected 
+offspring in the same family may no longer be assumed to be independent. 
+This can be dealt with by using the ^robust^ option. This option may also
+be used to relax the assumption that the two parental transmissions to a 
+single affected offspring are independent.  
+
+Weighted analyses are used and, unusually, weights can be negative, thus 
+allowing transmission of an allele less frequently than expected to be scored
+positively in some circumstances. An important use of this concerns inheritance
+of quantitative traits; we might define weights to be deviation of the 
+offspring trait value from the population mean. Weights can also be used to 
+exclude offspring that cannot be excluded in any other manner. Note that the 
+weight expression uses ^offspring^ values of variables.
+
+Note that alleles coded as zero are NOT treated as missing. Neither are zero 
+pedigree member codes. If you want zero to be treated as a missing value, 
+use ^mvdecode^ to recode them. This problem does not occur if you 
+read in "preped" formatted files with the utility ^inprep^.
+
+
+Options
+-------
+
+^ped^	  variable containing pedigree id (default is 1st variable)
+
+^id^	  variable containing pedigree member id (default is 2nd variable)
+
+^father^  variable containing id of father (default is 3rd variable)
+
+^mother^  variable containing id of mother (default is 4th variable)
+
+^sex^	  variable containing sex of subject (default is 5th variable)
+
+^affect^  disease status variable indicating affected or not (default is 6th 
+          variable)
+
+^acode^   the code(s) indicating an affected individual (default is 2)
+
+^emin^	  the minimum number of expected transmissions for which an allele will
+	  be considered independently. Alleles rarer than this are aggregated 
+	  with the next least common allele until this condition is met 
+	  (default is 5).	
+
+^morigin^ restrict analysis to transmissions from mother
+
+^porigin^ restrict analysis to transmissions from father
+	  (^morigin^ and ^porigin^ options cannot be invoked simultaneously)
+
+^pacode^  restrict aanalysis to transmissions from parent with specified 
+          values in the disease status field
+
+^male^	  restrict analysis to transmissions to male offspring
+
+^female^  restrict analysis to transmissions to female offspring
+	  (^male^ and ^female^ options cannot be invoked simultaneously)
+
+^robust^  protects against non-independence of transmissions within "clusters"
+	  (see below)
+
+^cluster^ specifies whether clusters should be regarded as ^p^edigrees,
+	  ^n^uclear families, or ^t^riads (default is nuclear families)
+
+^nowarn^  turns off diagnostic output concerning misinheritance or pooling of
+	  low frequency alleles
+
+Returned values
+---------------
+
+^tdt^ is an ^rclass^ command and returns the following values:
+
+r(chi2)     (scalar) Global chi-squared test statistic
+r(df)       (scalar) Degrees of freedom
+r(p_val)    (scalar) p-value
+r(chi2type) (macro)  "Score"
+
+Examples
+--------
+
+. tdt allele1 allele2, emin(10) robust cluster(n)
+
+. tdt allele1 allele2 [iw= diastolic - 80], acode(1 2)
+
+See Also
+--------
+
+^gtdt^, ^mlgtdt^, ^inprep^
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/clayton
+

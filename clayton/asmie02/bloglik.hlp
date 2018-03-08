@@ -1,0 +1,32 @@
+Plotting the Bernouilli log likelihood
+--------------------------------------
+
+^bloglik^ D H ^,^[^p^aram^()^ ^c^ut^()^ ^a^pprox ]
+
+Description
+-----------
+
+^bloglik^ plots the Bernouilli log likelihood for the probability
+parameter, the odds parameter, or the logodds parameter, based on
+^D^ failures and ^H^ survivors, together with a quadratic approximation.
+
+Options
+-------
+^param^ supplies the parameter: ^prob^, ^odds^, or ^logodds^
+
+^cut^ supplies the cut-point for the log likelihood ratio
+(default ^-1.353^)
+
+^approx^ requests a quadratic approximation to the log likelihood
+ratio curve
+
+Examples
+--------
+
+^bloglik 4 6, param(prob)^
+^bloglik 4 6, param(odds)^
+^bloglik 4 6, param(odds) approx^
+^bloglik 4 6, param(logodds)^
+^bloglik 4 6, param(logodds) approx^
+^bloglik 4 6, param(logodds) cut(-2)^
+

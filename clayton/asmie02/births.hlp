@@ -1,0 +1,11 @@
+^Births data^
+
+The data in ^births^ refer to the records of 500 
+births in a London hospital.
+
+^id^          identity number of mother and baby
+^matage^      maternal age in years
+^hyp^         hypertension in mother 1=yes, 0=no
+^gestwks^     gestational age in weeks
+^sex^         sex of baby 1=male, 2=female
+^bweight^     birth weight in gms

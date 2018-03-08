@@ -1,0 +1,35 @@
+v 2
+d Exercises for analysis of genetic association studies
+d
+d David Clayton
+d 
+d Diabetes and Inflammation Laboratory         Tel: 44 (0)1223 762669 
+d Cambridge Institute for Medical Research     Fax: 44 (0)1223 762102
+d Wellcome Trust/MRC Building                  david.clayton@cimr.cam.ac.uk
+d Addenbrooke's Hospital, Cambridge, CB2 2XY   www-gene.cimr.cam.ac.uk/clayton/
+d		 
+d jranramp.dta    Population-based case-control study example dataset
+d mhc3iddm.dta    Family-based association study example dataset
+d solution.dta    Data file for pedigrees in "tdt1" exercise
+d mhc3iddm.pre    Family-based association study example dataset (preped file)
+*		 
+d popcc1.pdf      Exercise on population-based case-control studies
+d popcc2.pdf      Exercise on (observed) population stratification
+d tdt1.pdf        Exercises on the tdt and simple extensions
+d tdt2.pdf        Exercise on parent-of-origin effects
+*
+f exassoc/jranramp.dta
+f exassoc/mhc3iddm.dta 
+f exassoc/mhc3iddm.pre 
+f exassoc/solution.dta
+*
+f exassoc/popcc1.pdf
+f exassoc/popcc2.pdf
+f exassoc/tdt1.pdf
+f exassoc/tdt2.pdf
+*
+f exassoc/popcc1.ps
+f exassoc/popcc2.ps
+f exassoc/tdt1.ps
+f exassoc/tdt2.ps
+*

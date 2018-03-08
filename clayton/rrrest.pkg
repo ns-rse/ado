@@ -1,0 +1,16 @@
+v 2
+d rrrest
+d program to estimate relative recurrence risk ratio, controlling for
+environmental covariates.
+d Written by Chris Wallace (Chris.Wallace@lshtm.ac.uk)
+d
+d rrrest.ado      Main program for estimating relative recurrence risk ratio
+d rrres_sum.ado   Ancillary program to calculate and display variables 
+d rrres_lf.ado    Method lf evaluator for rrrest
+d rrrest.hlp      Help file
+*
+f rrrest/rrrest.ado 
+f rrrest/rrres_sum.ado
+f rrrest/rrres_lf.ado
+f rrrest/rrrest.hlp 
+e

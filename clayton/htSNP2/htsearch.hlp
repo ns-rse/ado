@@ -1,0 +1,83 @@
+Search for optimal set of htSNPs by searching all subsets
+---------------------------------------------------------
+
+^htsearch^ [varlist] [weight] [, ^mi^n^(^#^)^ ^ma^x^(^#^) cri^teria^(^list^)^
+     ^inc^lude^(^varlist^) exc^lude^(^varlist^)  u^ntil^(^criterion min|mean #^) d^ots^(^#^)^ 
+     ^ra(^#^)^ ^s^aving^(^filename^) r^eplace]
+
+^aweight^s, ^fweight^s, ^iweight^s, and ^pweight^s are allowed  
+
+ 
+Description
+-----------
+
+This program searchs a set of diallelic loci (the argument ^varlist^) to find
+an optimal set of ht-SNPs. It executes a search of all possible subsets of 
+size up to a given maximum (or until a specified performance is achieved), 
+calling the program ^haptag^ for each subset to calculate the criteria on 
+which performance is assessed. These criteria are described in the help file
+for ^haptag^ and are denoted ^pde^, ^r2^, ^r2c^, and ^r2a^. For each criterion,
+and for each subset size, the program calculates the subset with the largest 
+value of
+	(a) the mean value, over loci, of the criterion, and
+	(b) the worst locus-specific value of the criterion.
+A complete record of all subsets searched, together with the corresponding 
+values for the optimality criteria may be saved as a Stata dataset.
+
+
+Options
+-------
+
+^min^       The minimum subset size to search (default 1)
+^max^       The maximum subset size (default is total number of loci)
+^criteria^  A list of the criteria to be used (default is all four)
+^include^   A list of loci to be forced to be used as ht-SNPs. The additional
+          subset is added to this list (default empty)
+^exclude^   A list of loci to consider, but which cannot be used as ht-SNPs.
+^until^     Causes the search to be stopped at a subset size at which the 
+          minimum or mean value of a specified criterion achieves a specified
+          level, given as a number between 0 and 1 (default is to continue 
+          until maximum subset size)
+^dots^      Print a dot every # subsets searched (default 10)
+^ra^        Ignore loci with a rare minor allele. The option specifies the 
+          threshold for the minor allele frequency, as a number between 0 and 
+          0.5 (default is to consider all loci)
+^saving^    Filename in which to save record of subset search
+^replace^   Necessary if the ^saving^ file is to be overwritten
+^full^      Print a full list of prediction statistics for each locus for
+          every subset size (requires ^until^ option to specify a criterion)
+
+Returned values
+---------------
+
+^htsearch^ is an ^rclass^ command and returns, for each criterion, 
+the following values (with ^cr^ replaced by ^pde^, ^r2^, ^r2c^ or ^r2a^):
+
+scalars:
+             r(cr_min)  =   Best value of worst locus-specific criterion
+             r(cr_mean) =   Best value of mean criterion value over all loci
+
+
+macros:
+         r(cr_min_ss)   :   Best subset on ^cr_min^ criterion
+         r(cr_worst)    :   Worst locus using this subset
+         r(cr_mean_ss)  :   Best subset on ^cr_mean^ criterion
+
+
+See Also
+--------
+
+^haptag^, ^htstep^, ^haplist^
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/clayton
+
+
+

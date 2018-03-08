@@ -1,0 +1,82 @@
+v 2
+
+d Teaching material for the course 
+d "Advanced Statistical Methods in Epidemiology"
+
+d David Clayton and Michael Hills
+
+d Erasmus Summer Programme, Erasmus University Rotterdam, Aug 26 - Aug 30, 2002
+
+d (includes .pdf asmie02/files for lecture slides and practical exercises)
+
+f asmie02/tabmenu1.ado
+f asmie02/tabmenu1.hlp
+f asmie02/tabmenu2.ado
+f asmie02/tabmenu2.hlp
+f asmie02/effmenu1.ado
+f asmie02/effmenu1.hlp
+f asmie02/effmenu2.ado
+f asmie02/effmenu2.hlp
+f asmie02/effects1.ado
+f asmie02/genind.ado
+f asmie02/genind.hlp
+f asmie02/cdf.ado
+f asmie02/cdf.hlp
+f asmie02/rndbin.ado
+f asmie02/rndbin.hlp
+f asmie02/rndpoi.ado
+f asmie02/rndpoi.hlp
+f asmie02/rndexp.ado
+f asmie02/rndexp.hlp
+f asmie02/rndgam.ado
+f asmie02/rndgam.hlp
+f asmie02/rnd.hlp
+f asmie02/blik.ado
+f asmie02/blik.hlp
+f asmie02/bloglik.ado
+f asmie02/bloglik.hlp
+f asmie02/binsim.ado
+f asmie02/tabrate.ado
+f asmie02/tabrate.hlp
+f asmie02/levels.ado
+f asmie02/levels.hlp
+f asmie02/births.dta
+f asmie02/dates.dta
+f asmie02/diet_age.dta
+f asmie02/diet.dta
+f asmie02/dps_agg.dta
+f asmie02/dps.dta
+f asmie02/epilep1.dta
+f asmie02/epilep2.dta
+f asmie02/guy.dta
+f asmie02/haem.dta
+f asmie02/lep.dta
+f asmie02/mortality.dta
+f asmie02/pnbirths.dta
+f asmie02/png_agg.dta
+f asmie02/png_age.dta
+f asmie02/pngevent.dta
+f asmie02/pngsubj.dta
+f asmie02/pnleics.dta
+f asmie02/cantab.dta
+f asmie02/wcantab1.dta
+f asmie02/wcantab2.dta
+f asmie02/births.dct
+f asmie02/dates.dct
+f asmie02/births.hlp
+f asmie02/diet.hlp
+f asmie02/epilep1.hlp
+f asmie02/epilep2.hlp
+f asmie02/haem.hlp
+f asmie02/lep.hlp
+f asmie02/pnbirths.hlp
+f asmie02/pngevent.hlp
+f asmie02/pngsubj.hlp
+f asmie02/png.hlp
+f asmie02/pnleics.hlp
+f asmie02/cscht.do
+f asmie02/diet_age.do
+f asmie02/png_age.do
+f asmie02/png_agg.do
+f asmie02/slides.pdf
+f asmie02/pracs.pdf

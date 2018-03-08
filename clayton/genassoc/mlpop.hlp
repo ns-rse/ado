@@ -1,0 +1,189 @@
+{smcl}
+{.-}
+help for {cmd:mlpop}
+{.-}
+
+{title:Multiple locus tests in case-control studies of tagging SNPs (htSNPs)}
+
+{p 8 27}
+{cmd: mlpop}
+{it:varlist}
+[{cmd:using} {it:file}]
+[{cmd:,}
+	{cmdab:gt:ype}
+	{cmdab:post:fix}{cmd:(}{it:string1 string2}{cmd:)}
+	{cmdab:sav:ing}{cmd:(}{it:file}{cmd:)}
+	{cmdab:rep:lace}
+	{cmdab:app:end}
+	{cmdab:tr:anspose}
+	{cmdab:noimp:ute}
+	{cmdab:wi:thin}{cmd:(}{it:varlist}{cmd:)}
+	{cmdab:aov:}
+	{cmdab:noi:sily}
+]
+{p_end}
+
+
+{title:Description}
+
+{p}
+This program carries out multiple locus tests on population-based data. The 
+dataset is assumed to be arranged with one record per subject. The genotype at 
+each locus can be coded either as a pair of variables, each coded 1 or 2 
+("allele" coding, the default), or as a single variable coded 0, 1, or 2 
+("genotype" coding).  
+{p_end}
+
+{p}
+The {it:varlist} must contain the trait variable as the first, 
+and usually the only, entry. The dataset indicated in the {cmd:using} clause 
+will contain the output file (written by {help haptag:haptag}) which 
+contains the prediction scores for all other SNPs in the region using 
+a set of htSNPs. The htSNPs must be present in the current data. The
+program will test each  htSNP and, in addition, carry out tests based on 
+predictions of each of the remaining SNPs indicated in the  
+{help haptag:haptag}) output 
+file. These test results may be saved as a {it:Stata} dataset, for example, for
+later use in graphical displays. A global tests for {it:all htSNP loci} and
+for {it:all loci} (including predicted loci) are also computed. 
+
+{p}
+This program is based on scoring htSNPs by linear functions of the 
+htSNP alleles (rather than haplotypes). This method is either optimal
+or near optimal  in regions of strong linkage disequilibrium and,since
+gametic phase is irrelevant, requires only  easy and fast computations (see 
+Chapman et al., Human Heredity, 56:18-31).
+
+{p}
+In the absence of a {cmd:using} clause, no predictions can be made. The 
+tests are limited to the SNPs listed in the {it:varlist} after the 
+case/control status variable.If these are "allele" coded, the two variables 
+representing each locus must be adjacent in the {it:varlist}
+
+{p}
+Optionally missing values at any locus are imputed using the Stata 
+{help impute} command. Otherwise the tests for predicted loci and the global 
+test use only complete records. 
+
+{p}
+It is possible to test for association within strata (defined, for example, by 
+geographical regions}. In this way we can protect against false association 
+due to {it: confounding}: allele frequencies may vary by region and trait 
+distribution may also vary between regions.   
+{p_end}
+
+
+{title:Saved results}
+
+{p}
+The following returned values concern single locus tests on typed loci.
+These tests use subjects with complete data for each locus.
+
+{p 0 4}
+{cmd:r(p_min_ty)} (scalar) 
+the {it:smallest} of the p-values for typed  loci 
+{p_end}
+{p 0 4}
+{cmd:r(locus_p_min_ty)} (macro)
+the SNP which achieved this value
+{p_end} 
+
+{p}
+The following returned values concern single locus tests
+on both typed and predicted loci (where appropriate) and to the global test.
+These tests use either complete records or, when the {bf:impute} option is 
+selected, imputed values for missing 
+genotypes. 
+{p_end}
+
+{p 0 4}
+{cmd:r(p_min_all)} (scalar) 
+the {it:smallest} of the p-values for both typed loci (and predicted loci,
+if calculated)
+{p_end}
+{p 0 4}
+{cmd:r(locus_p_min_all)} (macro)
+the SNP which achieved this value
+{p_end}
+{p 0 4}
+{cmd:r(F_global)} (scalar)
+the global F test
+{p_end}
+{p 0 4}
+{cmd:r(df_num)} (scalar)
+the numerator degrees of freedom for this test
+{p_end}
+{p 0 4}
+{cmd:r(df_den)} (scalar)
+the denominator degrees of freedom for this test
+{p_end}
+{p 0 4}
+{cmd:r(p_global)} (scalar)
+the p-value for the global test of these loci
+{p_end}
+
+{p}
+The following matrices are used in computing the global test and are returned. 
+{p_end}
+
+{p 0 4}
+{cmd:r(score)} (matrix) 
+the (row) vector of scores
+{p_end}
+{p 0 4}
+{cmd:r(score_variance)} (matrix) 
+the variance-covariance matrix of scores
+{p_end}
+
+
+{title:Options}
+
+{p 0 4}
+{cmdab:gt:ype} indicates that "genotype" coding is used
+{p_end}
+{p 0 4}
+{cmdab:post:fix}{cmd:(}{it:file}{cmd:)} gives the two "postfix" strings which
+must be added to the htSNP locus name (as it appears in the {bf:using} dataset)
+to give the two variables used for allele coding of the locus in the master 
+data. Default values are {bf:_1} and {bf:_2}  
+{p_end}
+{p 0 4}
+{cmdab:sav:ing}{cmd:(}{it:file}{cmd:)} save the output tests as a Stata 
+dataset. This contains the locus name, the t-statistic and associated p-value,
+and an indicator of whether or not the locus is a typed  htSNP or a predicted 
+SNP.
+{p_end}
+{p 0 4}
+{cmdab:rep:lace} indicates that any old version of the {cmd:saving} dataset
+should be overwritten
+{p_end}
+{p 0 4}
+{cmdab:app:end} indicates that, if the {bf:saving} dataset exists, the current 
+results should be appended to it
+{p_end}
+{p 0 4}
+{cmdab:tr:anspose} The default format for the {bf:saving} dataset is to have
+loci as cases and test results as variables. This option reverses this.
+{p_end}
+{p 0 4}
+{cmdab:noimp:ute} Turns off imputation of missing genotypes.
+{p_end}
+{p 0 4}
+{cmdab:wi:thin}{cmd:(}{it:varlist}{cmd:)} Specifies variables which define 
+strata for stratified analysis.
+{p_end}
+{p 0 4}
+{cmdab:aov:} Requests analyses of variance for allele frequencies between 
+strata (only in conjuction with {\cmd:within} option.
+{p_end}
+{p 0 4}
+{cmdab:noi:sily} Details of number of values imputed are to be shown.
+{p_end}
+
+{title:Also see}
+
+{p 0 21}
+Online help for 
+   {help haptag},
+   {help mltdt}
+{p_end}

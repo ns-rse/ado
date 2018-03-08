@@ -1,0 +1,135 @@
+Predictive efficiency of haplotype tagging SNPs (ht-SNPs) 
+---------------------------------------------------------
+
+^haptag^ [varlist] [weight] [^using^ file] , ^ht^snps^(^varlist^)^ [^ra(^#^)^]
+                      [^sav^ing^(^file^)^ ^rep^lace]
+
+
+^aweight^s, ^fweight^s, ^iweight^s, and ^pweight^s are allowed  
+
+
+Description
+-----------
+
+This program calculates the ability to predict allele frequencies at a series
+of loci using just a subset of "ht-SNPs". Loci are assumed to be diallelic 
+with alleles coded 1 or 2. Only completely typed haplotypes are used in the 
+calculations. Several indices are calculated:
+
+^1. PDE^ (^pde^) The Percent of diversity explained. This index measures the 
+fraction of the total haplotype diversity which is captured by typing 
+only the ht-SNPs. Diversity between N haplotypes is defined as the 
+total number of discrepancies in all N^2 pairwise comparisons. The program 
+calculates total diversity, "residual" diversity (the diversity between 
+haplotypes within groups defined by the htSNPs) and, finally, the proportion 
+of diversity "explained" by the htSNPs:
+
+                         Residual diversity
+	PDE  =	1   -   --------------------
+                          Total diversity
+
+This index is calculated for the overall haplotype and for each locus 
+separately.The locus-specific value has an interpretation as a probability that
+a chromosome sampled at random from those with the "1" allele at the locus 
+and a chromosome sampled from those with the "2" allele would also differ in at
+least one of the ht-SNPs. The total PDE is the mean of the locus-specific PDEs
+using weights pq, where p and q are the allele frequencies.
+
+^2. R-squared^. This provides a better method of assessing our ability to 
+predict allele frequencies at another locus by just typing the ht-SNPs. 
+Broadly speaking, R-squared measures the proportion of information for 
+demonstrating association lost in using the ht-SNP prediction rather than 
+by typing the locus and testing for association directly. Three variants of 
+this index are calculated, corresponding to different ways of predicting 
+allele frequencies at a further locus using only ht-SNP data:
+
+	^2a. "Haplotype" R-squared^ (^r2^). The allele frequency is predicted 
+        by a linear function of the ht-haplotype frequencies.
+
+	^2b. "Clump" R-squared^ (^r2c^). The allele frequency is predicted by 
+        the combined frequency of the "clump" of ht-haplotypes most closely 
+	associated with it. This is really a special case of a haplotype 
+        R-squared in which scores given to each ht-haplotype in the linear 
+        function are either 0 or 1.
+
+	^2c. "Allelic" R-squared^ (^r2a^). The allele frequency is predicted 
+        by a linear function of the ht-SNP ^allele^ frequencies. This is the
+	index relevant if association is to be tested by DNA pooling.
+
+R-squared values are calculated for each locus in term and an overall value is
+also calculated --- again as a weighted mean of the allele-specific values 
+using weights pq.
+
+There are two modes for calculation of R-squared values. In one mode, the 
+best prediction from htSNPs to further loci are calculated for the current
+data. The weights given to each haplotype in the optimal prediction scores
+may be saved as a Stata dataset by use of the ^saving^ option. In the second 
+mode, these saved weights from a previous dataset may be read in and their 
+predictive efficiency in the current dataset assessed; this mode is triggered
+by use of the ^using^ clause in the program invokation. 
+
+The program also outputs the frequency of the minor allele for all loci.
+
+Data which consist of a single record for each haplotype together with its 
+frequency or probability can be analysed using weights.
+
+
+Options
+-------
+
+^htsnps^    (not optional) The loci comprising the candidate set of htSNPs
+^ra^        Ignore rare alleles. The option specifies the threshold value for
+          the minor allele frequency, expressed as a proportion between 0 and
+          0.5
+^saving^    Name of Stata dataset in which to save haplotype weights
+^replace^   Use this option if a file of this name already exists and is to be
+          replaced
+
+
+Returned values
+---------------
+
+^haptag^ is an ^rclass^ command and returns the following values:
+
+scalars:
+           r(pde_min)  =  Value of the worst locus-specific PDE
+           r(pde_max)  =  Value of the best locus-specific PDE
+           r(pde_mean) =  Mean value of PDE
+           r(r2_min)   =  Value of the worst locus-specific haplotype R-squared
+           r(r2_max)   =  Value of the best locus-specific haplotype R-squared
+           r(r2_mean)  =  Mean value of haplotype R-squared
+           r(r2c_min)  =  Value of the worst locus-specific clump R-squared
+           r(r2c_max)  =  Value of the best locus-specific clump R-squared
+           r(r2c_mean) =  Mean value of clump R-squared
+           r(r2a_min)  =  Value of the worst locus-specific allelic R-squared
+           r(r2a_max)  =  Value of the best locus-specific allelic R-squared
+           r(r2a_mean) =  Mean value of allelic R-squared
+
+
+macros:
+           r(pde_worst) : Locus with worst PDE
+           r(pde_best)  : Locus with best PDE           
+           r(r2_worst)  : Locus with worst haplotype R-squared
+           r(r2_best)   : Locus with best haplotype R-squared
+           r(r2c_worst) : Locus with worst clump R-squared
+           r(r2c_best)  : Locus with best clump R-squared
+           r(r2a_worst) : Locus with worst allelic R-squared
+           r(r2a_best)  : Locus with best allelic R-squared
+
+
+
+See Also
+--------
+
+^htboot^, ^htsearch^, ^htstep^, ^haplist^
+
+Author
+------
+
+David Clayton
+
+Diabetes and Inflammation Laboratory		Tel: 44 (0)1223 762669 
+Cambridge Institute for Medical Research	Fax: 44 (0)1223 762102
+Wellcome Trust/MRC Building			david.clayton@cimr.cam.ac.uk
+Addenbrooke's Hospital, Cambridge, CB2 2XY	www-gene.cimr.cam.ac.uk/clayton
+

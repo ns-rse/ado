@@ -1,0 +1,30 @@
+v 2
+d Programs for choosing  htSNPs. Now superceded by htSNP2
+d
+d David Clayton
+d 
+d Diabetes and Inflammation Laboratory         Tel: 44 (0)1223 762669 
+d Cambridge Institute for Medical Research     Fax: 44 (0)1223 762102
+d Wellcome Trust/MRC Building                  david.clayton@cimr.cam.ac.uk
+d Addenbrooke's Hospital, Cambridge, CB2 2XY   www-gene.cimr.cam.ac.uk/clayton/
+d
+d hapdiv.ado      Calculate haplotype diversity explained by subset of loci
+d haplist.ado     List haplotypes in groups determined by htSNPs
+d htsubsets.ado   Search all subsets of loci for optimum choice of htSNPs
+d htsnp.pdf       Brief description of the theory
+d gad2.dta        Eg. dataset (Used by Johnson et al. Nature Genetics, 2001)
+d tcf8.dta        Eg. dataset (Used by Johnson et al. Nature Genetics, 2001)
+*
+f htSNP/hapdiv.ado
+f htSNP/hapdiv.hlp
+*
+f htSNP/haplist.ado
+f htSNP/haplist.hlp
+*
+f htSNP/htsubsets.ado
+f htSNP/htsubsets.hlp    
+*
+f htSNP/htsnp.pdf
+*
+f htSNP/gad2.dta
+f htSNP/tcf8.dta
